@@ -26,6 +26,13 @@ namespace App
                    options.UseNpgsql(Configuration.GetConnectionString("Contexto"),
                    b => b.MigrationsAssembly("App")
                ));
+
+            services.AddTiaIdentity()
+        .AddCookie(x =>
+        {
+            x.LoginPath = "/autenticacao/login";
+            x.AccessDeniedPath = "/autenticacao/acessonegado";
+        });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
