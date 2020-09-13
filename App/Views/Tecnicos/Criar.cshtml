@@ -1,0 +1,21 @@
+@model Tecnico
+@{
+ViewData["Title"] = "Criar novo técnico";
+}
+
+<a class="btn btn-primary" asp-action="Criar">Novo</a>
+<div class="card-body">
+  <div class="card-title">
+    <h3><i class="fas fa-user-plus"></i> @ViewData["Title"]</h3>
+  </div>
+  <form asp-action="Criar">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <input asp-for="Nome" class="form-control" placeholder="Nome do técnico" />
+        <span class="text-danger" asp-validation-for="Nome"></span>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success">Salvar</button>
+      </div>
+  </form>
+</div>

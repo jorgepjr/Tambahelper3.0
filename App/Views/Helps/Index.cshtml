@@ -1,0 +1,54 @@
+@model IEnumerable<Help>
+  @{
+  Layout = "_Layout";
+  ViewData["Title"] = "Todos os Helps";
+  }
+  <div class="card card-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            @if(@Model.Any()){
+            <th>Data de Registro</th>
+            <th>Setor</th>
+            <th>Tipo de Problema</th>
+            <th>Detalhes</th>
+            <th>Situação</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(var item in Model){
+          <tr>
+            <td>@item.DataDeRegistro</td>
+            <td>@item.Setor</td>
+            <td>@item.TipoDeProblema</td>
+            <td><a class="link link-info" asp-controller="Helps" asp-action="Detalhes"
+                asp-route-id="@item.Id">Visualizar</a></td>
+
+            @if(@item.Tecnico is null)
+            {
+            <td class="text-warning">Aguardando Atendimento</td>
+            }
+            @if(@item.AssumidoPorTecnico)
+            {
+            <td class="text-primary">@Html.DisplayFor(x => item.Situacao) @item.Tecnico.Nome</td>
+            }
+            @if(@item.Finalizado)
+            {
+            <td class="text-success">@Html.DisplayFor(x => item.Situacao) @item.Tecnico.Nome</td>
+            }
+            @if(@item.Pendente)
+            {
+            <td class="text-danger">@Html.DisplayFor(x => item.Situacao)</td>
+            }
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  @section Scripts{
+  <script src="~/js/contador-helps.js"></script>
+  }

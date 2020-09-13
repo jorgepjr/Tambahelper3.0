@@ -1,0 +1,25 @@
+﻿@{
+ViewData["Title"] = "Início";
+Layout = "_LayoutPublic";
+}
+<div class="row mt-5">
+    <div class="card card-body shadow-sm m-2">
+        <a asp-action="Criar" asp-controller="Helps">
+            <div class="text-center h3 p-5">
+                <em class="fas fa-hands-helping"></em>
+                Pedir help
+            </div>
+        </a>
+    </div>
+    <div class="card card-body shadow-sm m-2">
+        <a asp-action="Acessar" asp-controller="Autenticacao">
+            <div class="text-center h3 p-5">
+                <em class="fas fa-headset"></em>
+                Atender help
+            </div>
+        </a>
+    </div>
+</div>
+
+@section Scripts{
+}

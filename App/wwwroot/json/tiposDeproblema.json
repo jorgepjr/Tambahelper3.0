@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "problema": "Maquina não liga"
+    },
+    {
+        "id": 2,
+        "problema": "Impressora nao funciona"
+    },
+    {
+        "id": 3,
+        "problema": "Sem internet"
+    },
+    {
+        "id": 4,
+        "problema": "Senha Expirou"
+    }
+]
