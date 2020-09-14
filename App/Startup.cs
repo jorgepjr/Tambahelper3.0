@@ -21,11 +21,12 @@ namespace App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<Contexto>();
 
-            services.AddDbContext<Contexto>(options =>
-                   options.UseNpgsql(Configuration.GetConnectionString("Contexto"),
-                   b => b.MigrationsAssembly("App")
-               ));
+            // services.AddDbContext<Contexto>(options =>
+            //        options.UseNpgsql(Configuration.GetConnectionString("Contexto"),
+            //        b => b.MigrationsAssembly("App")
+            //    ));
 
             services.AddTiaIdentity()
         .AddCookie(x =>
