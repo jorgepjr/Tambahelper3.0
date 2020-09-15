@@ -1,13 +1,42 @@
-using Xunit;
 using System;
 using Dominio.Enums;
 using Dominio.Models;
+using Xunit;
 
 namespace Test
 {
-    public class HelpTests
+    public class IniciarAtendimento
     {
         [Fact]
+        public void DeveMudarSituacaoParaEmAtendimentoAoIniciarAtendimento()
+        {
+            //Given
+            var help = new Help("Maquina nao liga", "Meu PC nao quer ligar", "Financeiro", "999999999");
+            var tecnico = new Tecnico("Raimundão");
+
+            //When
+            help.IniciarAtendimento(tecnico);
+
+            //Then
+            Assert.Equal(Situacao.EmAtendimento, help.Situacao);
+        }
+
+        [Fact]
+        public void DeveRegistrarComADataDeHojeOInicioDoAtendimento()
+        {
+            //Given
+            var hoje = DateTime.Now.Date;
+            var help = new Help("Maquina nao liga", "Meu PC nao quer ligar", "Financeiro", "999999999");
+            var tecnico = new Tecnico("Raimundão");
+
+            //When
+            help.IniciarAtendimento(tecnico);
+
+            //Then
+            Assert.Equal(hoje, help.InicioDoAtendimento.Date);
+        }
+
+         [Fact]
         public void DeveCriarHelpComSituacaoAguardandoAtendimento()
         {
             var help = new Help("Maquina com defeito", "Nao consigo ligar PC", "Gerencia", "58888555956");
@@ -30,7 +59,7 @@ namespace Test
         {
             var helpIniciado = new HelpBuilder().Iniciado();
 
-            Assert.Equal(Situacao.AssumidoPorTecnico, helpIniciado.Situacao);
+            Assert.Equal(Situacao.EmAtendimento, helpIniciado.Situacao);
         }
 
         [Fact]
@@ -69,5 +98,3 @@ namespace Test
         }
     }
 }
-
-

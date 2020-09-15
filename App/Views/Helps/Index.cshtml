@@ -25,8 +25,8 @@
             <td>@item.TipoDeProblema</td>
             <td><a class="link link-info" asp-controller="Helps" asp-action="Detalhes"
                 asp-route-id="@item.Id">Visualizar</a></td>
-
-            @if(@item.Tecnico is null)
+@* 
+            @if(@item.EstaAguardandoAtendimento)
             {
             <td class="text-warning">Aguardando Atendimento</td>
             }
@@ -41,7 +41,7 @@
             @if(@item.Pendente)
             {
             <td class="text-danger">@Html.DisplayFor(x => item.Situacao)</td>
-            }
+            } *@
           </tr>
           }
         </tbody>

@@ -1,9 +1,9 @@
+using App.Data;
 using Dominio.Models;
 using App.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using App.Data;
 
 namespace App.Controllers
 {

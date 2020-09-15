@@ -8,11 +8,15 @@ namespace App.ViewModels
     {
         public DetalhesDoHelpViewModel(Help help)
         {
+            this.Id = help.Id;
             this.TipoDeProblema = help.TipoDeProblema;
             this.Descricao = help.Descricao;
             this.Setor = help.Setor;
             this.Situacao = help.Situacao;
             this.Telefone = help.Telefone;
+            this.AssumidoPorTecnico = help.AssumidoPorTecnico;
+            this.Solucao = help.Solucao;
+            this.Finalizado = help.Finalizado;
         }
         public int Id { get; set; }
         public string TipoDeProblema { get; set; }

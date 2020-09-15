@@ -5,7 +5,7 @@ namespace Dominio.Models
 {
     public class Help
     {
-        protected Help()
+        public Help()
         {
         }
         public Help(string tipoDeProblema, string descricao, string setor, string telefone)
@@ -16,7 +16,7 @@ namespace Dominio.Models
             Telefone = telefone;
             Situacao = Situacao.AguardandoAtendimento;
         }
-      
+
         public int Id { get; private set; }
         public string TipoDeProblema { get; private set; }
         public string Descricao { get; private set; }
@@ -34,18 +34,20 @@ namespace Dominio.Models
                 throw new InvalidOperationException("Este help não esta Aguardando Atendimento!");
             this.Tecnico = tecnico;
             this.InicioDoAtendimento = DateTime.Now;
-            this.Situacao = Situacao.AssumidoPorTecnico;
+            this.Situacao = Situacao.EmAtendimento;
         }
         public void FinalizarAtendimento(Tecnico tecnico, string solucao)
         {
             if (!AssumidoPorTecnico)
+            {
                 throw new InvalidOperationException("O atendimento deste help ainda não foi iniciado!");
+            }
             this.Tecnico = tecnico;
             this.Solucao = solucao;
             this.FimDoAtendimento = DateTime.Now;
             this.Situacao = Situacao.Finalizado;
         }
-        public bool AssumidoPorTecnico => this.Situacao == Situacao.AssumidoPorTecnico;
+        public bool AssumidoPorTecnico => this.Situacao == Situacao.EmAtendimento;
         public bool Finalizado => this.Situacao == Situacao.Finalizado;
         public bool EstaAguardandoAtendimento => this.Situacao == Situacao.AguardandoAtendimento;
         public bool Pendente => this.Situacao == Situacao.Pendente;

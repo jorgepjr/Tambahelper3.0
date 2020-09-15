@@ -1,7 +1,7 @@
 using App.Data;
+using Dominio.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,13 +20,10 @@ namespace App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddScoped<Contexto>();
+            services.AddControllersWithViews()
+            .AddRazorRuntimeCompilation();
 
-            // services.AddDbContext<Contexto>(options =>
-            //        options.UseNpgsql(Configuration.GetConnectionString("Contexto"),
-            //        b => b.MigrationsAssembly("App")
-            //    ));
+            services.AddScoped<Contexto>();
 
             services.AddTiaIdentity()
         .AddCookie(x =>
@@ -45,7 +42,7 @@ namespace App
             }
             else
             {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

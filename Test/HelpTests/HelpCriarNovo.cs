@@ -8,7 +8,7 @@ namespace Test
     public class HelpCriarNovo
     {
         [Fact]
-        public void ComDataDeRegistroDeHoje()
+        public void CriarHelpComDataDeRegistroDeHoje()
         {
             //Given
             DateTime hoje = DateTime.Now.Date;
@@ -21,7 +21,7 @@ namespace Test
         }
 
         [Fact]
-        public void ComSituacaoAguardandoAtendimento()
+        public void CriarHelpComSituacaoAguardandoAtendimento()
         {
             //Given
             Situacao aguardandoAtendimento = Situacao.AguardandoAtendimento;

@@ -7,7 +7,7 @@ namespace Dominio.Enums
         AguardandoAtendimento = 0,
 
         [Display(Name = "Assumido por")]
-        AssumidoPorTecnico = 1,
+        EmAtendimento = 1,
 
         [Display(Name = "Resolvido por")]
         Finalizado = 2,
