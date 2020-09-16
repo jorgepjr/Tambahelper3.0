@@ -1,18 +1,14 @@
 [
     {
         "id": 1,
-        "problema": "Maquina não liga"
+        "problema": "Máquina com Defeito"
     },
     {
         "id": 2,
-        "problema": "Impressora nao funciona"
+        "problema": "Instalação de Programas"
     },
     {
         "id": 3,
-        "problema": "Sem internet"
-    },
-    {
-        "id": 4,
-        "problema": "Senha Expirou"
+        "problema": "Conexão de Internet"
     }
 ]

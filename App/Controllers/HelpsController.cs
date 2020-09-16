@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -65,19 +64,19 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Atender(int id, Tecnico tecnico)
+        public async Task<IActionResult> Atender(int id, int tecnicoId)
         {
             var help = await db.Help.FindAsync(id);
-            
+            var tecnicoSelecionado = await db.Tecnico.FindAsync(tecnicoId);
 
-            help.IniciarAtendimento(tecnico);
+            help.IniciarAtendimento(tecnicoSelecionado);
             await db.SaveChangesAsync();
             return RedirectToAction(nameof(Index), new { id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Finalizar(int id, Help model)
-        {
+        {//TODO: Corrigir
             var help = await db.Help.FindAsync(id);
 
             var tecnico = await db.Tecnico.FirstOrDefaultAsync();

@@ -8,9 +8,9 @@ ViewData["Title"] = "Detalhes do Help";
 <div class="card card-body">
   <div class="card-title">
     <h4 class="font-weight-bold">Help - @Model.Situacao</h4>
-    @if(@Model.TecnicoResponsavel != null){
+    @if(@Model.Tecnico != null){
 
-    <span>@Model.TecnicoResponsavel.Nome</span>
+    <span>Técnico responsável: @Model.Tecnico.Nome</span>
     }
   </div>
   <ul class="list-group list-group-flush">
@@ -90,8 +90,8 @@ ViewData["Title"] = "Detalhes do Help";
       </div>
       <div class="modal-body">
         <form class="col-12" asp-action="Atender">
-          <input name="id" hidden value="@Model.Id">
-          <select asp-items="@ViewBag.Tecnicos"></select>
+          <input hidden name="id" value="@Model.Id">
+          <select name="tecnicoId" value="id" asp-items="@ViewBag.Tecnicos"></select>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-primary">Salvar</button>
         </form>
