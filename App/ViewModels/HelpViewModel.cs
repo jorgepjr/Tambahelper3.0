@@ -4,9 +4,10 @@ using Dominio.Models;
 
 namespace App.ViewModels
 {
-    public class DetalhesDoHelpViewModel
+    public class HelpViewModel
     {
-        public DetalhesDoHelpViewModel(Help help)
+        public HelpViewModel(){}
+        public HelpViewModel(Help help)
         {
             this.Id = help.Id;
             this.TipoDeProblema = help.TipoDeProblema;
@@ -14,9 +15,9 @@ namespace App.ViewModels
             this.Setor = help.Setor;
             this.Situacao = help.Situacao;
             this.Telefone = help.Telefone;
-            this.AssumidoPorTecnico = help.AssumidoPorTecnico;
             this.Solucao = help.Solucao;
-            this.Finalizado = help.Finalizado;
+            this.InicioDoAtendimento = help.InicioDoAtendimento;
+            this.FimDoAtendimento = help.FimDoAtendimento;
         }
         public int Id { get; set; }
         public string TipoDeProblema { get; set; }
@@ -24,14 +25,8 @@ namespace App.ViewModels
         public string Setor { get; set; }
         public string Telefone { get; set; }
         public string Solucao { get; set; }
-        public string Observacao { get; set; }
         public DateTime InicioDoAtendimento { get; set; }
         public DateTime FimDoAtendimento { get; set; }
         public Situacao Situacao { get; set; }
-        public bool EstaAguardadoAtendimento { get; set; }
-        public bool AssumidoPorTecnico { get; set; }
-        public bool Finalizado { get; set; }
-        public bool Pendente { get; set; }
-        public Avaliacao AvaliacaoDoAtendimento { get; set; }
     }
 }

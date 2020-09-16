@@ -22,24 +22,6 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(maxLength: 50, nullable: false),
-                    Senha = table.Column<string>(maxLength: 36, nullable: false),
-                    Email = table.Column<string>(maxLength: 50, nullable: false),
-                    Hash = table.Column<string>(nullable: true),
-                    HashUtilizado = table.Column<bool>(nullable: false),
-                    Perfil = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Help",
                 columns: table => new
                 {
@@ -77,9 +59,6 @@ namespace App.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Help");
-
-            migrationBuilder.DropTable(
-                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Tecnico");

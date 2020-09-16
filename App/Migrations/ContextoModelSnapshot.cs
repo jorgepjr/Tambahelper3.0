@@ -78,42 +78,6 @@ namespace App.Migrations
                     b.ToTable("Tecnico");
                 });
 
-            modelBuilder.Entity("Dominio.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Hash")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("HashUtilizado")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Perfil")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("character varying(36)")
-                        .HasMaxLength(36);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuario");
-                });
-
             modelBuilder.Entity("Dominio.Models.Help", b =>
                 {
                     b.HasOne("Dominio.Models.Tecnico", "Tecnico")

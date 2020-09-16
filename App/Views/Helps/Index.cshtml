@@ -13,6 +13,7 @@
             <th>Setor</th>
             <th>Tipo de Problema</th>
             <th>Detalhes</th>
+            <th>Tecnico Responsável</th>
             <th>Situação</th>
             }
           </tr>
@@ -25,23 +26,7 @@
             <td>@item.TipoDeProblema</td>
             <td><a class="link link-info" asp-controller="Helps" asp-action="Detalhes"
                 asp-route-id="@item.Id">Visualizar</a></td>
-@* 
-            @if(@item.EstaAguardandoAtendimento)
-            {
-            <td class="text-warning">Aguardando Atendimento</td>
-            }
-            @if(@item.AssumidoPorTecnico)
-            {
-            <td class="text-primary">@Html.DisplayFor(x => item.Situacao) @item.Tecnico.Nome</td>
-            }
-            @if(@item.Finalizado)
-            {
-            <td class="text-success">@Html.DisplayFor(x => item.Situacao) @item.Tecnico.Nome</td>
-            }
-            @if(@item.Pendente)
-            {
-            <td class="text-danger">@Html.DisplayFor(x => item.Situacao)</td>
-            } *@
+            <td>@item.Situacao.ToString("F")</td>
           </tr>
           }
         </tbody>
@@ -50,5 +35,4 @@
   </div>
 
   @section Scripts{
-  <script src="~/js/contador-helps.js"></script>
   }

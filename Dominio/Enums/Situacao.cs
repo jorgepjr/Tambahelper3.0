@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Dominio.Enums
@@ -6,7 +7,7 @@ namespace Dominio.Enums
     {
         AguardandoAtendimento = 0,
 
-        [Display(Name = "Assumido por")]
+        [Description("Em atendimento")]
         EmAtendimento = 1,
 
         [Display(Name = "Resolvido por")]

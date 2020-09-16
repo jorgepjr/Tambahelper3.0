@@ -1,78 +1,50 @@
-@model DetalhesDoHelpViewModel
+@model HelpViewModel
 @{
 ViewData["Title"] = "Detalhes do Help";
 }
+<div class="form-group mt-1">
+  <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-arrow-left"></i> Voltar</a>
+</div>
+<div class="card card-body">
+  <div class="card-title">
+    <h4 class="font-weight-bold">Help - @Model.Situacao</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Tipo de Problema: @Model.TipoDeProblema</li>
+    <li class="list-group-item">Setor: @Model.Setor</li>
+    <li class="list-group-item">Telefone: @Model.Telefone</li>
+    <li class="list-group-item">@Model.Descricao</li>
+  </ul>
 
-<div class="card">
-  <div class="card-body">
-    <div class="card-title">
-      <h4>@ViewData["Title"]</h4>
-      <hr />
-    </div>
-
-    @if(Model.Finalizado)
-    {
-    <div class="alert alert-success"><strong>Solução: </strong>"'@Model.Solucao'" Inicio do
-      Atendimento:@Model.InicioDoAtendimento Fim do Atendimento @Model.FimDoAtendimento
-    </div>
-    }
-    @if(@Model.Pendente)
-    {
-    <div class="alert alert-secondary"><strong>Pendencia: </strong>@Model.Observacao Inicio do
-      Atendimento:@Model.InicioDoAtendimento
-    </div>
-    }
-    <ul>
-      <li>Setor: @Model.Setor</li>
-      <li>Telefone: @Model.Telefone</li>
-      <li>Tipo de Problema: @Model.TipoDeProblema</li>
-      <li>Descrição: @Model.Descricao</li>
-      <li>Avaliação: @Model.AvaliacaoDoAtendimento</li>
-    </ul>
-    <div class="float-right">
-      <div class="row">
-
-        <div class="form-group">
-          @if(Model.EstaAguardadoAtendimento)
-          {
-          <form asp-route-id="Id" asp-action="Atender" asp-controller="Helps">
-            <input type="hidden" asp-for="Id">
-            <button class="btn btn-success">Atender</button>
-          </form>
-          }
-        </div>
-        @* <div class="form-group">
-          @if(Model.AssumidoPorTecnico)
-          {
-          <form asp-route-id="Id" asp-action="RegistarPendencia" asp-controller="Helps">
-            <input type="hidden" asp-for="Id">
-            <textarea type="text" asp-for="Observacao"></textarea>
-            <button class="btn btn-success">Registrar pendencia</button>
-          </form>
-          }
-        </div> *@
-        @if(Model.AssumidoPorTecnico && !Model.Finalizado)
+  <div class="float-right">
+    <div class="row">
+      <div class="form-group">
+        @if(Model.Situacao == Situacao.AguardandoAtendimento)
         {
-        @* <form class="col-12" asp-route-id="Model.Id" asp-action="Finalizar" asp-controller="Helps">
-          <input type="hidden" asp-for="Id">
-          <span class="text-danger" asp-validation-for="Solucao"></span>
-          <textarea class="form-control" asp-for="Solucao" placeholder="Descreva como resolveu o B.O" rows="3"
-            required></textarea>
-          <br>
-          <div class="form-group">
-            <button class="btn btn-primary">Finalizar</button>
-          </div>
-        </form> *@
-        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Finalizar</button>
-
+    <button class="btn btn-primary" data-toggle="modal" data-target="#atender">Atender</button>
         }
       </div>
-      <div class="form-group">
-        <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-arrow-left"></i> Voltar</a>
-      </div>
+      @if(Model.Situacao == Situacao.EmAtendimento)
+      {
+      <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Finalizar</button>
+      }
     </div>
   </div>
 </div>
+@if(Model.Situacao == Situacao.Finalizado)
+{
+<div class="card card-body mt-2">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h4 class="font-weight-bold">Solução</h4>
+      <p>@Model.Solucao</p>
+    </li>
+    <li class="list-group-item">Início do Atendimento: @Model.InicioDoAtendimento</li>
+    <li class="list-group-item">Fim do Atendimento: @Model.FimDoAtendimento</li>
+
+  </ul>
+</div>
+}
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -87,11 +59,35 @@ ViewData["Title"] = "Detalhes do Help";
       </div>
       <div class="modal-body">
         <form class="col-12" asp-action="Finalizar">
-          <input name="id" value="@Model.Id">
+          <input name="id" hidden value="@Model.Id">
           <span class="text-danger" asp-validation-for="Solucao"></span>
           <textarea class="form-control" asp-for="Solucao" placeholder="Informe o que foi feito" rows="3"
             required></textarea>
           <br>
+          <select asp-items="@ViewBag.Tecnicos"></select>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="atender" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Observações</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="col-12" asp-action="Atender">
+          <input name="id" hidden value="@Model.Id">
+          <select asp-items="@ViewBag.Tecnicos"></select>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-primary">Salvar</button>
         </form>

@@ -2,6 +2,7 @@ using App.Data;
 using Dominio.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,14 +24,10 @@ namespace App
             services.AddControllersWithViews()
             .AddRazorRuntimeCompilation();
 
-            services.AddScoped<Contexto>();
+            services.AddDbContext<Contexto>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("Contexto")));
+            
 
-            services.AddTiaIdentity()
-        .AddCookie(x =>
-        {
-            x.LoginPath = "/autenticacao/login";
-            x.AccessDeniedPath = "/autenticacao/acessonegado";
-        });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using App.ViewModels;
 using App.Data;
 using Dominio.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace App.Controllers
 {
@@ -20,7 +21,6 @@ namespace App.Controllers
         {
             var helps = await db.Help
             .Include(x => x.Tecnico)
-            .OrderByDescending(x => x.DataDeRegistro)
             .ToListAsync();
             return View(helps);
         }
@@ -55,22 +55,20 @@ namespace App.Controllers
 
         public async Task<IActionResult> Detalhes(int id)
         {
+            var tecnicos = await db.Tecnico.ToListAsync();
+
+            ViewBag.Tecnicos = new SelectList(tecnicos, "Id", "Nome");
+
             var help = await db.Help.FindAsync(id);
-            var detalhesDoHelpViewModel = new DetalhesDoHelpViewModel(help);
-            return View(detalhesDoHelpViewModel);
+            var helpViewModel = new HelpViewModel(help);
+            return View(helpViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Atender(int id)
+        public async Task<IActionResult> Atender(int id, Tecnico tecnico)
         {
             var help = await db.Help.FindAsync(id);
-
-            var tecnico = await db.Tecnico.FirstOrDefaultAsync();
-
-            if (tecnico is null)
-            {
-                return RedirectToAction("Criar", "Tecnicos");
-            }
+            
 
             help.IniciarAtendimento(tecnico);
             await db.SaveChangesAsync();
