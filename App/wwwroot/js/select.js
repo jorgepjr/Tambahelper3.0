@@ -6,7 +6,7 @@
 });
 
 function CarregarSelect() {
-    $.getJSON('/json/tiposDeProblema.json', function (data) {
+    $.getJSON('/json/problemas.json', function (data) {
         var options = '<option data-id="" value="">Selecione um Tipo de Probelma</option>';
 
         $.each(data, function (key, val) {
