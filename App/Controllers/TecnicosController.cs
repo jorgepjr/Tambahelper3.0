@@ -22,7 +22,8 @@ namespace App.Controllers
         }
         public IActionResult Criar()
         {
-            return View();
+            var tecnico = new Tecnico();
+            return View(tecnico);
         }
 
         [HttpPost]

@@ -18,6 +18,7 @@ namespace App.ViewModels
             this.Solucao = help.Solucao;
             this.InicioDoAtendimento = help.InicioDoAtendimento;
             this.FimDoAtendimento = help.FimDoAtendimento;
+            this.TecnicoResponsavel = help.Tecnico;
         }
         public int Id { get; set; }
         public string TipoDeProblema { get; set; }
@@ -27,6 +28,7 @@ namespace App.ViewModels
         public string Solucao { get; set; }
         public DateTime InicioDoAtendimento { get; set; }
         public DateTime FimDoAtendimento { get; set; }
+        public Tecnico TecnicoResponsavel { get; }
         public Situacao Situacao { get; set; }
     }
 }

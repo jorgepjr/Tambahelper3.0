@@ -31,7 +31,9 @@ namespace Dominio.Models
         public void IniciarAtendimento(Tecnico tecnico)
         {
             if (!EstaAguardandoAtendimento)
+            {
                 throw new InvalidOperationException("Este help não esta Aguardando Atendimento!");
+            }
             this.Tecnico = tecnico;
             this.InicioDoAtendimento = DateTime.Now;
             this.Situacao = Situacao.EmAtendimento;

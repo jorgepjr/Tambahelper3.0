@@ -8,6 +8,10 @@ ViewData["Title"] = "Detalhes do Help";
 <div class="card card-body">
   <div class="card-title">
     <h4 class="font-weight-bold">Help - @Model.Situacao</h4>
+    @if(@Model.TecnicoResponsavel != null){
+
+    <span>@Model.TecnicoResponsavel.Nome</span>
+    }
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Tipo de Problema: @Model.TipoDeProblema</li>
