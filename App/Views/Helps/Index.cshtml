@@ -3,18 +3,18 @@
   Layout = "_Layout";
   ViewData["Title"] = "Todos os Helps";
   }
+  @if(@Model.Any()){
   <div class="card card-body">
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
-            @if(@Model.Any()){
             <th>Data de Registro</th>
             <th>Setor</th>
             <th>Tipo de Problema</th>
             <th>Detalhes</th>
             <th>Situação</th>
-            }
+
           </tr>
         </thead>
         <tbody>
@@ -32,6 +32,9 @@
       </table>
     </div>
   </div>
+  }else{
+  <h3 class="card card-body alert-primary">Nenhum help cadastrado!</h3>
+  }
 
   @section Scripts{
   }
