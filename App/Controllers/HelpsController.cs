@@ -75,18 +75,14 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Finalizar(int id, Help model)
-        {//TODO: Corrigir
+        public async Task<IActionResult> Finalizar(int id, int tecnicoId, string solucao)
+        {
+            //TODO: refatorar
             var help = await db.Help.FindAsync(id);
 
-            var tecnico = await db.Tecnico.FirstOrDefaultAsync();
+            var tecnico = await db.Tecnico.FindAsync(tecnicoId);
 
-            if (tecnico is null)
-            {
-                return RedirectToAction("Criar");
-            }
-
-            help.FinalizarAtendimento(tecnico, model.Solucao);
+            help.FinalizarAtendimento(tecnico, solucao);
             await db.SaveChangesAsync();
             return RedirectToAction(nameof(Detalhes), new { id });
         }
