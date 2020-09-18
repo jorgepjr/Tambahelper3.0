@@ -4,14 +4,13 @@
   ViewData["Title"] = "Técnicos";
   }
 
-
-<ul class="list-group">
-  <li class="list-group-item bg-secondary text-light">@ViewData["Title"]</li>
-     @foreach(var item in Model){
-       <a asp-action="Editar" asp-route-id="@item.Id" >
-  <li class="list-group-item list-group-item-action">
-       @item.Nome
-  </li>
-  </a>
-        }
-</ul>
+<div class="card card-body"></div>
+  <ul class="list-group">
+    @foreach(var item in Model){
+    <a asp-action="Editar" asp-route-id="@item.Id">
+      <li class="list-group-item list-group-item-action">
+        @item.Nome
+      </li>
+    </a>
+    }
+  </ul>

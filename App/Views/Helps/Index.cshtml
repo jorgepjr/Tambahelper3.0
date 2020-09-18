@@ -9,22 +9,18 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Data de Registro</th>
+            <th>Registro</th>
             <th>Setor</th>
             <th>Tipo de Problema</th>
-            <th>Detalhes</th>
             <th>Situação</th>
-
           </tr>
         </thead>
         <tbody>
           @foreach(var item in Model){
-          <tr>
+          <tr onclick="window.location='Helps/Detalhes/@item.Id';">
             <td>@item.DataDeRegistro</td>
             <td>@item.Setor</td>
             <td>@item.TipoDeProblema</td>
-            <td><a class="link link-info" asp-controller="Helps" asp-action="Detalhes"
-                asp-route-id="@item.Id">Visualizar</a></td>
             <td>@item.Situacao.ToString("F")</td>
           </tr>
           }
@@ -37,4 +33,7 @@
   }
 
   @section Scripts{
+   <script>
+
+   </script>
   }

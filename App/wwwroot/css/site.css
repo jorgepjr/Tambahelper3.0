@@ -3,17 +3,18 @@
   background: #f8f8ff;
 }
 
-
-
 nav {
   background: #ffffff;
+}
+
+.card {
+  margin-top: 3%;
 }
 
 .form-login .card-body {
   width: 300px;
   height: 400px;
 }
-
 
 .botoes-login {
   padding: 10px;
@@ -29,6 +30,6 @@ a>p {
   text-align: center;
 }
 
-table.table tr {
+tbody > tr{
   cursor: pointer;
 }
