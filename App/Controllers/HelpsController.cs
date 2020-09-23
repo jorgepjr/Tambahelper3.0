@@ -77,11 +77,9 @@ namespace App.Controllers
         [HttpPost]
         public async Task<IActionResult> Finalizar(HelpViewModel helpViewModel)
         {
-            var help = await db.Help.FindAsync(helpViewModel.Id);
+            var help = await db.Help.Include(x=>x.Tecnico).SingleOrDefaultAsync(x=>x.Id == helpViewModel.Id);
 
-            var tecnico = await db.Tecnico.FindAsync(helpViewModel.Tecnico.Id);
-
-            help.FinalizarAtendimento(tecnico, helpViewModel.Solucao);
+            help.FinalizarAtendimento(help.Tecnico, helpViewModel.Solucao);
             await db.SaveChangesAsync();
             return RedirectToAction(nameof(Detalhes), new { help.Id });
         }

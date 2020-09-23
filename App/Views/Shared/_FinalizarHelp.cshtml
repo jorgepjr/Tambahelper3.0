@@ -1,3 +1,5 @@
+@if(Model.Situacao == Situacao.EmAtendimento){
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -11,15 +13,16 @@
       <div class="modal-body">
         <form class="col-12" asp-action="Finalizar">
           <input name="id" hidden value="@Model.Id">
-          <input name="tecnicoId" hidden value="@Model.Tecnico.Id">
           @* <span class="text-danger" asp-validation-for="Solucao"></span> *@
-          <textarea class="form-control" name="solucao" value="@Model.Solucao" placeholder="Informe o que foi feito" rows="3"
-            required></textarea>
-          <br>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button class="btn btn-primary">Salvar</button>
+          <textarea class="form-control" name="solucao" value="@Model.Solucao" placeholder="Informe o que foi feito"
+            rows="3" required></textarea>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-link btn-sm" data-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary btn-sm">Salvar</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+}
