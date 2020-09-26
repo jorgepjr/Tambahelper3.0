@@ -53,7 +53,7 @@ namespace App.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("text");
 
-                    b.Property<string>("TipoDeProblema")
+                    b.Property<string>("Tipo")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

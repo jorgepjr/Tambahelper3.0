@@ -27,7 +27,7 @@ namespace App.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TipoDeProblema = table.Column<string>(nullable: true),
+                    Tipo = table.Column<string>(nullable: true),
                     Descricao = table.Column<string>(nullable: true),
                     Setor = table.Column<string>(nullable: true),
                     Telefone = table.Column<string>(nullable: true),

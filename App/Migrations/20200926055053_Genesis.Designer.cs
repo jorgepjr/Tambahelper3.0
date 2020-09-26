@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace App.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200916013945_Genesis")]
+    [Migration("20200926055053_Genesis")]
     partial class Genesis
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace App.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("text");
 
-                    b.Property<string>("TipoDeProblema")
+                    b.Property<string>("Tipo")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

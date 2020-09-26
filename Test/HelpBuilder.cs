@@ -4,7 +4,7 @@ namespace Test
 {
     public class HelpBuilder
     {
-        readonly string tipoDeProblema = "Maquina com defeito";
+        readonly string tipo = "Maquina com defeito";
         readonly string descricao = "Meu PC nao liga nem ha pau";
         readonly string setor = "DETIC";
         readonly string telefone = "99999-9999";
@@ -12,7 +12,7 @@ namespace Test
         public Help AguardandoAtendimento()
         {
             var help = new Help(
-               tipoDeProblema: tipoDeProblema,
+               tipo: tipo,
                descricao: descricao,
                setor: setor,
                telefone: telefone);

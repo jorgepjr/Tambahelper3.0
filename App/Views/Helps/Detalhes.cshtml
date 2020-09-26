@@ -24,7 +24,7 @@ ViewData["Title"] = "Detalhes do Help";
         @if(@Model.Tecnico != null){
         <li class="list-group-item">Técnico responsável: @Model.Tecnico.Nome</li>
         }
-        <li class="list-group-item">Tipo de Problema: @Model.TipoDeProblema</li>
+        <li class="list-group-item">Tipo: @Model.Tipo</li>
         <li class="list-group-item">Setor: @Model.Setor</li>
         <li class="list-group-item">Telefone: @Model.Telefone</li>
         <li class="list-group-item">@Model.Descricao</li>

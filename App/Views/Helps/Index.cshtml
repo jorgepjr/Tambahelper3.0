@@ -15,7 +15,7 @@
           <tr>
             <th>Registro</th>
             <th>Setor</th>
-            <th>Tipo de Problema</th>
+            <th>Tipo</th>
             <th>Situação</th>
           </tr>
         </thead>
@@ -24,7 +24,7 @@
           <tr onclick="window.location='Helps/Detalhes/@item.Id';">
             <td>@item.DataDeRegistro</td>
             <td>@item.Setor</td>
-            <td>@item.TipoDeProblema</td>
+            <td>@item.Tipo</td>
             <td>@item.Situacao.ToString("F")</td>
           </tr>
           }

@@ -8,9 +8,9 @@ namespace Dominio.Models
         public Help()
         {
         }
-        public Help(string tipoDeProblema, string descricao, string setor, string telefone)
+        public Help(string tipo, string descricao, string setor, string telefone)
         {
-            TipoDeProblema = tipoDeProblema;
+            Tipo = tipo;
             Descricao = descricao;
             Setor = setor;
             Telefone = telefone;
@@ -18,7 +18,7 @@ namespace Dominio.Models
         }
 
         public int Id { get; private set; }
-        public string TipoDeProblema { get; private set; }
+        public string Tipo { get; private set; }
         public string Descricao { get; private set; }
         public string Setor { get; private set; }
         public string Telefone { get; private set; }
