@@ -4,7 +4,7 @@ ViewData["Title"] = "Detalhes";
 }
 <div class="mt-3" style="margin-left: 93%; position: static; display: inline-block;">
 
-  @if(Model.Situacao == Situacao.AguardandoAtendimento)
+  @if(Model.PodeAtender)
   {
   <button class="btn btn-primary" data-toggle="modal" data-target="#atender">Atender</button>
   }
@@ -43,8 +43,6 @@ ViewData["Title"] = "Detalhes";
     </ul>
     }
   </div>
-  @if(Model.Tecnico != null){
+  
   <partial name="_FinalizarHelp"></partial>
-  }else{
   <partial name="_AtenderHelp"></partial>
-  }

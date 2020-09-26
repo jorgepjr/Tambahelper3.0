@@ -31,6 +31,10 @@ namespace Test
 
             //Then
             Assert.Equal(aguardandoAtendimento, help.Situacao);
+            Assert.NotNull(help.Tipo);
+            Assert.NotNull(help.Descricao);
+            Assert.NotNull(help.Setor);
+            Assert.NotNull(help.Telefone);
         }
     }
 }

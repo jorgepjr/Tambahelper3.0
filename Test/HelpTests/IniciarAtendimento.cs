@@ -39,9 +39,11 @@ namespace Test
          [Fact]
         public void DeveCriarHelpComSituacaoAguardandoAtendimento()
         {
+            Situacao situacaoEsperada = Situacao.AguardandoAtendimento;
+
             var help = new Help("Maquina com defeito", "Nao consigo ligar PC", "Gerencia", "58888555956");
 
-            Assert.True(help.EstaAguardandoAtendimento);
+            Assert.Equal(situacaoEsperada, help.Situacao);
         }
 
         [Fact]
@@ -52,14 +54,6 @@ namespace Test
             var helpIniciado = new HelpBuilder().Iniciado();
 
             Assert.Equal(helpIniciado.InicioDoAtendimento.Date, hoje.Date);
-        }
-
-        [Fact]
-        public void DeveMudarSituacaoParaAssumidoPorTecnicoAoIniciarAtendimento()
-        {
-            var helpIniciado = new HelpBuilder().Iniciado();
-
-            Assert.Equal(Situacao.EmAtendimento, helpIniciado.Situacao);
         }
 
         [Fact]

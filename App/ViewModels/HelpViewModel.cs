@@ -19,6 +19,8 @@ namespace App.ViewModels
             this.InicioDoAtendimento = help.InicioDoAtendimento;
             this.FimDoAtendimento = help.FimDoAtendimento;
             this.Tecnico = help.Tecnico;
+            this.PodeAtender = help.PodeAtender;
+            this.PodeFinalizar = help.AssumidoPorTecnico;
         }
         public int Id { get; set; }
         public string Tipo { get; set; }
@@ -29,6 +31,8 @@ namespace App.ViewModels
         public DateTime InicioDoAtendimento { get; set; }
         public DateTime FimDoAtendimento { get; set; }
         public Tecnico Tecnico { get; }
+        public bool PodeAtender { get; }
+        public bool PodeFinalizar { get; }
         public Situacao Situacao { get; set; }
     }
 }
