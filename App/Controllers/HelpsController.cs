@@ -71,7 +71,7 @@ namespace App.Controllers
 
             help.IniciarAtendimento(tecnicoSelecionado);
             await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index), new { id });
+            return RedirectToAction(nameof(Detalhes), new { id });
         }
 
         [HttpPost]

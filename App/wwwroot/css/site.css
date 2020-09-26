@@ -33,3 +33,10 @@ a>p {
 tbody > tr{
   cursor: pointer;
 }
+
+a:hover{
+  color: rgb(0, 60, 255);
+  transition: 1s;
+}
+
+  

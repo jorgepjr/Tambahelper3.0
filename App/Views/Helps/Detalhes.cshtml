@@ -1,13 +1,12 @@
 @model HelpViewModel
 @{
-ViewData["Title"] = "Detalhes do Help";
+ViewData["Title"] = "Detalhes";
 }
-<div class="form-group mt-1 mb-0 p-2">
-  <a class="btn btn-link btn-sm" asp-action="Index"><i class="fas fa-arrow-left"></i> Voltar</a>
+<div class="mt-3" style="margin-left: 93%; position: static; display: inline-block;">
 
   @if(Model.Situacao == Situacao.AguardandoAtendimento)
   {
-  <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#atender">Atender</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#atender">Atender</button>
   }
   @if(Model.Situacao == Situacao.EmAtendimento)
   {
@@ -15,14 +14,14 @@ ViewData["Title"] = "Detalhes do Help";
   }
 </div>
 
-<div class="card card-body mt-1">
+<div class="card card-body mt-2">
   <div class="card-title">
     <h4 class="font-weight-bold">Help - @Model.Situacao</h4>
 
     <div>
       <ul class="list-group list-group-flush">
         @if(@Model.Tecnico != null){
-        <li class="list-group-item">Técnico responsável: @Model.Tecnico.Nome</li>
+        <li class="list-group-item">Técnico responsável: <span class="text-success font-weight-bold">@Model.Tecnico.Nome</span></li>
         }
         <li class="list-group-item">Tipo: @Model.Tipo</li>
         <li class="list-group-item">Setor: @Model.Setor</li>

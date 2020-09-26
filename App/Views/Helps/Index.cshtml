@@ -1,13 +1,11 @@
 @model IEnumerable<Help>
   @{
   Layout = "_Layout";
-  ViewData["Title"] = "Lista de Helps";
+  ViewData["Title"] = "Helps";
   }
+
+  <div class="card card-body mt-0 mt-5">
   @if(@Model.Any()){
-  <div class="form-group mt-1 mb-0 p-2">
-    <a class="btn btn-link btn-sm" asp-controller="Home" asp-action="Index"><i class="fas fa-arrow-left"></i> Voltar</a>
-  </div>
-  <div class="card card-body mt-0">
     <h3 class="card-title"><em class="fas fa-hands-helping"></em> @ViewData["Title"]</h3>
     <div class="table-responsive">
       <table class="table table-hover">
@@ -31,10 +29,10 @@
         </tbody>
       </table>
     </div>
-  </div>
   }else{
-  <h3 class="card card-body alert-primary">Nenhum help cadastrado!</h3>
+  <h3 class="card-body alert-primary">Nenhum help cadastrado!</h3>
   }
+  </div>
 
   @section Scripts{
   <script>
