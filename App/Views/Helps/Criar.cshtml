@@ -1,7 +1,7 @@
 @model CriarHelpViewModel
 @{
 Layout = "_Layout";
-ViewData["Title"] = "Registrar pedido de Help";
+ViewData["Title"] = "Registrar help";
 }
 <div class="card card-body">
   <div class="card-title">
@@ -16,7 +16,7 @@ ViewData["Title"] = "Registrar pedido de Help";
     </div>
 
     <div class="form-group">
-      <textarea placeholder="Descreva o que aconteceu" asp-for="Descricao" class="form-control"></textarea>
+      <textarea placeholder="O que deseja?" asp-for="Descricao" class="form-control"></textarea>
       <span class="text-danger" asp-validation-for="Descricao"></span>
     </div>
 

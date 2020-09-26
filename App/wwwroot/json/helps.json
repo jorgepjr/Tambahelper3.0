@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "help": "Máquina com Defeito"
+    },
+    {
+        "id": 2,
+        "help": "Instalação de Programas"
+    },
+    {
+        "id": 3,
+        "help": "Conexão de Internet"
+    }
+]

@@ -6,11 +6,11 @@
 });
 
 function CarregarSelect() {
-    $.getJSON('/json/problemas.json', function (data) {
-        var options = '<option data-id="" value="">Selecione um Tipo de Probelma</option>';
+    $.getJSON('/json/helps.json', function (data) {
+        var options = '<option data-id="" value="">Tipo de help</option>';
 
         $.each(data, function (key, val) {
-            options += '<option data-id="' + val.id + '"value="' + val.problema + '">' + val.problema + '</option>';
+            options += '<option data-id="' + val.id + '"value="' + val.help + '">' + val.help + '</option>';
 
             $("#TipoDeProblema").html(options);
         });
