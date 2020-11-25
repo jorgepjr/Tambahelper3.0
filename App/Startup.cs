@@ -1,5 +1,4 @@
 using App.Data;
-using Dominio.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +25,8 @@ namespace App
 
             services.AddDbContext<Contexto>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Contexto")));
+
+                services.AddTransient<IHelpDao, HelpDao>();
             
 
         }

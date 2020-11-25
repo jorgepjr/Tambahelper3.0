@@ -10,17 +10,15 @@ namespace App.Controllers
 {
     public class HelpsController : Controller
     {
-        private readonly Contexto db;
+        private readonly IHelpDao dao;
 
-        public HelpsController(Contexto db)
+        public HelpsController(IHelpDao dao)
         {
-            this.db = db;
+            this.dao = dao;
         }
         public async Task<IActionResult> Index()
         {
-            var helps = await db.Help
-            .Include(x => x.Tecnico)
-            .ToListAsync();
+            var helps = await dao.Buscar();
             return View(helps);
         }
         public IActionResult Criar()
@@ -39,8 +37,7 @@ namespace App.Controllers
                                     criarHelpViewModel.Setor,
                                     criarHelpViewModel.Telefone);
 
-                await db.AddAsync(help);
-                await db.SaveChangesAsync();
+                await dao.Criar(help);
                 return RedirectToAction(nameof(Enviado));
             }
             return View(criarHelpViewModel);
@@ -58,7 +55,8 @@ namespace App.Controllers
 
             ViewBag.Tecnicos = new SelectList(tecnicos, "Id", "Nome");
 
-            var help = await db.Help.FindAsync(id);
+            var help = await dao.BuscarPor(id);
+
             var helpViewModel = new HelpViewModel(help);
             return View(helpViewModel);
         }
@@ -66,18 +64,14 @@ namespace App.Controllers
         [HttpPost]
         public async Task<IActionResult> Atender(int id, int tecnicoId)
         {
-            var help = await db.Help.FindAsync(id);
-            var tecnicoSelecionado = await db.Tecnico.FindAsync(tecnicoId);
-
-            help.IniciarAtendimento(tecnicoSelecionado);
-            await db.SaveChangesAsync();
+            await dao.Atender(id);
             return RedirectToAction(nameof(Detalhes), new { id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Finalizar(HelpViewModel helpViewModel)
         {
-            var help = await db.Help.Include(x=>x.Tecnico).SingleOrDefaultAsync(x=>x.Id == helpViewModel.Id);
+            var help = await db.Help.Include(x => x.Tecnico).SingleOrDefaultAsync(x => x.Id == helpViewModel.Id);
 
             help.FinalizarAtendimento(help.Tecnico, helpViewModel.Solucao);
             await db.SaveChangesAsync();

@@ -20,7 +20,7 @@ ViewData["Title"] = "Pedir help";
       <span class="text-danger" asp-validation-for="Descricao"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" telefone>
       <input placeholder="Qual telefone podemos entrar em contato ?" asp-for="Telefone" class="form-control" />
       <span class="text-danger" asp-validation-for="Telefone"></span>
     </div>
@@ -35,7 +35,6 @@ ViewData["Title"] = "Pedir help";
     </div>
   </form>
 </div>
-
 @section Scripts{
 <script src="~/js/select.js" asp-append-version="true"></script>
 }
