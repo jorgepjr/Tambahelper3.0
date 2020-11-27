@@ -1,26 +1,25 @@
+using App.Data;
+using App.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using App.ViewModels;
-using App.Data;
-using Dominio.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Dominio.Models;
 
 namespace App.Controllers
 {
     public class HelpsController : Controller
     {
-        private readonly IHelpDao dao;
+        private readonly IHelpDao helpDao;
         private readonly ITecnicoDao tecnicoDao;
 
-        public HelpsController(IHelpDao dao, ITecnicoDao tecnicoDao)
+        public HelpsController(IHelpDao helpDao, ITecnicoDao tecnicoDao)
         {
-            this.dao = dao;
+            this.helpDao = helpDao;
             this.tecnicoDao = tecnicoDao;
         }
         public async Task<IActionResult> Index()
         {
-            var helps = await dao.Buscar();
+            var helps = await helpDao.Buscar();
             return View(helps);
         }
         public IActionResult Criar()
@@ -39,25 +38,18 @@ namespace App.Controllers
                                     criarHelpViewModel.Setor,
                                     criarHelpViewModel.Telefone);
 
-                await dao.Criar(help);
+                await helpDao.Criar(help);
                 return RedirectToAction(nameof(Enviado));
             }
             return View(criarHelpViewModel);
         }
-
-        public IActionResult Enviado()
-        {
-
-            return View();
-        }
-
         public async Task<IActionResult> Detalhes(int id)
         {
             var tecnicos = await tecnicoDao.Buscar();
 
             ViewBag.Tecnicos = new SelectList(tecnicos, "Id", "Nome");
 
-            var help = await dao.BuscarPor(id);
+            var help = await helpDao.BuscarPor(id);
 
             var helpViewModel = new HelpViewModel(help);
             return View(helpViewModel);
@@ -71,11 +63,17 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Finalizar(HelpViewModel helpViewModel)
+        public async Task<IActionResult> Finalizar(int helpId, int tecnicoId, string solucao)
         {
-            await tecnicoDao.Finalizar(helpViewModel.HelpId, helpViewModel.Tecnico.Id, helpViewModel.Solucao);
+            await tecnicoDao.Finalizar(helpId, tecnicoId, solucao);
 
-            return RedirectToAction(nameof(Detalhes), new { helpViewModel.HelpId });
+            return RedirectToAction(nameof(Detalhes), new { id = helpId });
         }
+        public IActionResult Enviado()
+        {
+
+            return View();
+        }
+
     }
 }
