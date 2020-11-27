@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <form class="col-12" asp-action="Atender">
-                    <input hidden name="id" value="@Model.Id">
+                    <input hidden name="helpId" value="@Model.HelpId">
                     <select class="form-control" name="tecnicoId" value="id" asp-items="@ViewBag.Tecnicos"></select>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link btn-sm" data-dismiss="modal">Cancelar</button>

@@ -33,10 +33,10 @@ namespace App.Data
             var help = await db.Help.FindAsync(id);
             return help;
         }
-        public async Task Atender(int id, int tecnicoId)
+        public async Task Atender(int helpId, Tecnico tecnico)
         {
-            var help = await BuscarPor(id);
-            help.IniciarAtendimento(help.Tecnico);
+            var help = await BuscarPor(helpId);
+            help.IniciarAtendimento(tecnico);
             await db.SaveChangesAsync();
         }
     }

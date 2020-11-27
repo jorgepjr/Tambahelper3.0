@@ -10,7 +10,6 @@ namespace App.Data
         Task<IEnumerable<Help>> Buscar();
         Task Criar(Help help); 
         Task<Help> BuscarPor(int id);
-
-        Task<Help> Atender(int id);
+        Task Atender(int helpId, Tecnico tecnico);
     }
 }

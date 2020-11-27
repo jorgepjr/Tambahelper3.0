@@ -9,7 +9,7 @@ namespace App.ViewModels
         public HelpViewModel(){}
         public HelpViewModel(Help help)
         {
-            this.Id = help.Id;
+            this.HelpId = help.Id;
             this.Tipo = help.Tipo;
             this.Descricao = help.Descricao;
             this.Setor = help.Setor;
@@ -22,7 +22,7 @@ namespace App.ViewModels
             this.PodeAtender = help.PodeAtender;
             this.PodeFinalizar = help.AssumidoPorTecnico;
         }
-        public int Id { get; set; }
+        public int HelpId { get; set; }
         public string Tipo { get; set; }
         public string Descricao { get; set; }
         public string Setor { get; set; }

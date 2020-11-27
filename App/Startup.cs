@@ -27,6 +27,7 @@ namespace App
                 options.UseNpgsql(Configuration.GetConnectionString("Contexto")));
 
                 services.AddTransient<IHelpDao, HelpDao>();
+                services.AddTransient<ITecnicoDao, TecnicoDao>();
             
 
         }

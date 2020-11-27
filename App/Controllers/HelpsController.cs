@@ -11,10 +11,12 @@ namespace App.Controllers
     public class HelpsController : Controller
     {
         private readonly IHelpDao dao;
+        private readonly ITecnicoDao tecnicoDao;
 
-        public HelpsController(IHelpDao dao)
+        public HelpsController(IHelpDao dao, ITecnicoDao tecnicoDao)
         {
             this.dao = dao;
+            this.tecnicoDao = tecnicoDao;
         }
         public async Task<IActionResult> Index()
         {
@@ -51,7 +53,7 @@ namespace App.Controllers
 
         public async Task<IActionResult> Detalhes(int id)
         {
-            var tecnicos = await db.Tecnico.ToListAsync();
+            var tecnicos = await tecnicoDao.Buscar();
 
             ViewBag.Tecnicos = new SelectList(tecnicos, "Id", "Nome");
 
@@ -62,20 +64,18 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Atender(int id, int tecnicoId)
+        public async Task<IActionResult> Atender(int helpId, int tecnicoId)
         {
-            await dao.Atender(id);
-            return RedirectToAction(nameof(Detalhes), new { id });
+            await tecnicoDao.Atender(helpId, tecnicoId);
+            return RedirectToAction(nameof(Detalhes), new { id = helpId });
         }
 
         [HttpPost]
         public async Task<IActionResult> Finalizar(HelpViewModel helpViewModel)
         {
-            var help = await db.Help.Include(x => x.Tecnico).SingleOrDefaultAsync(x => x.Id == helpViewModel.Id);
+            await tecnicoDao.Finalizar(helpViewModel.HelpId, helpViewModel.Tecnico.Id, helpViewModel.Solucao);
 
-            help.FinalizarAtendimento(help.Tecnico, helpViewModel.Solucao);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Detalhes), new { help.Id });
+            return RedirectToAction(nameof(Detalhes), new { helpViewModel.HelpId });
         }
     }
 }
